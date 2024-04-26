@@ -50,12 +50,12 @@ async function login (req, res){
      try {
         // Query the database for a user with the provided studentID
         const user = await prisma.restaurant.findUnique({
-            where: { name }
+            where: { name: name }
         });
 
         // If user not found, return an error response
         if (!user) {
-            return res.status(401).json({ error: 'Invalid studentID or password' })
+            return res.status(401).json({ error: 'Invalid name or password' })
         }
 
         // Compare the provided password with the stored hashed password
@@ -64,7 +64,7 @@ async function login (req, res){
 
         // If password doesn't match, return an error response
         if (!passwordMatch) {
-            return res.status(401).json({ error: 'Invalid studentID or password' })
+            return res.status(401).json({ error: 'Invalid name or password' })
         }
 
         // If authentication is successful, respond with a success message

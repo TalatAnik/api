@@ -5,6 +5,7 @@ import bodyParser from 'body-parser'
 
 import users from "./src/routes/users.route.js"
 import restaurants from "./src/routes/restaurants.route.js"
+import admins from "./src/routes/admins.route.js"
 
 
 const app = express()
@@ -22,3 +23,4 @@ app.listen(5000, () => {
 
 app.use("/users", users)
 app.use("/restaurants", restaurants)
+app.use("/admin", admins)
