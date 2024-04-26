@@ -21,8 +21,8 @@ model User {
   phone     String
   password  String
   createdAt DateTime @default(now())
-  Order     Order[]
-  Review    Review[]
+  Orders     Order[]
+  Reviews    Review[]
 }
 
 model Restaurant {
