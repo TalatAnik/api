@@ -21,17 +21,18 @@ model User {
   phone     String
   password  String
   createdAt DateTime @default(now())
-  Orders     Order[]
-  Reviews    Review[]
+  Orders    Order[]
+  Reviews   Review[]
 }
 
 model Restaurant {
   id          String   @id @default(uuid())
-  name        String
+  bannerImg   String    @default("bannerSample.jpg")
+  name        String   @unique
   description String
   createdAt   DateTime @default(now())
   password    String
-  Item        Item[]
+  Items       Item[]
 }
 
 model Admin {

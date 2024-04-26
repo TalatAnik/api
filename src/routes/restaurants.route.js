@@ -1,39 +1,34 @@
 import express from 'express'
-import users from "../controllers/users.controller.js"
+import restaurants from '../controllers/restaurants.controller.js'
 
 const router = express.Router()
-
 
 router
     .get(
         "/all",
-        users.getAll,
+        restaurants.getAll,
         async (req, res) => {
             return res.json(req.result)
         }
     )    
     .get(
-        "/:id",
-        users.getById, 
+        "/:name",
+        restaurants.getByName, 
         async (req, res) => {
             return res.json(req.result)
         }        
     )
     .post(
         "/create",
-        users.create,
+        restaurants.create,
         async (req, res) => {
             res.json(req.result)
         }
     )
     .post(
         "/login",
-        users.login
+        restaurants.login
     )
-
-
-
-
 
 
 export default router

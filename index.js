@@ -3,7 +3,8 @@ import helmet from 'helmet'
 import cors from 'cors'
 import bodyParser from 'body-parser'
 
-import user from "./src/routes/users.route.js"
+import users from "./src/routes/users.route.js"
+import restaurants from "./src/routes/restaurants.route.js"
 
 
 const app = express()
@@ -19,4 +20,5 @@ app.listen(5000, () => {
 })
 
 
-app.use("/users", user)
+app.use("/users", users)
+app.use("/restaurants", restaurants)
