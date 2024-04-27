@@ -12,8 +12,8 @@ router
         }
     )    
     .get(
-        "/:name",
-        restaurants.getByName, 
+        "/:id",
+        restaurants.getById, 
         async (req, res) => {
             return res.json(req.result)
         }        
@@ -28,6 +28,10 @@ router
     .post(
         "/login",
         restaurants.login
+    )
+    .post(
+        "/addItem/:restID",
+        restaurants.addItem
     )
 
 

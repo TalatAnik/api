@@ -27,12 +27,12 @@ model User {
 
 model Restaurant {
   id          String   @id @default(uuid())
-  bannerImg   String    @default("bannerSample.jpg")
+  bannerImg   String   @default("bannerSample.jpg")
   name        String   @unique
   description String
   createdAt   DateTime @default(now())
   password    String
-  Items       Item[]
+  items       Item[] 
 }
 
 model Admin {
@@ -48,22 +48,21 @@ model Item {
   id           String     @id @default(uuid())
   name         String
   description  String
+  images       String[]   @default(["itemSample.jpg"])
   price        Float
   owner        Restaurant @relation(fields: [restaurantId], references: [id])
   restaurantId String
   offerPrice   Float
   onOffer      Boolean
   rating       Int
-  Order        Order?     @relation(fields: [orderId], references: [id])
-  orderId      String?
-  Review       Review[]
+  Reviews      Review[]
 }
 
 model Order {
-  id          String   @id @default(uuid())
-  items       Item[]
+  id          String       @id @default(uuid())
+  items       String[]
   discount    Float
-  customer    User     @relation(fields: [userId], references: [id])
+  customer    User         @relation(fields: [userId], references: [id])
   userId      String
   location    String
   createdAt   DateTime
@@ -73,6 +72,8 @@ model Order {
   deliveredAt DateTime
   status      String
   total       Float
+  delivery    Deliveryman? @relation(fields: [deliveryID], references: [id])
+  deliveryID  String
 }
 
 model Review {
@@ -83,4 +84,11 @@ model Review {
   userId String
   item   Item   @relation(fields: [itemId], references: [id])
   itemId String
+}
+
+model Deliveryman {
+  id     String   @id @default(uuid())
+  name   String
+  Image  String[] @default(["deliverySample.jpg"])
+  orders Order[]
 }
