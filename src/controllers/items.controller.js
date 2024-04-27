@@ -102,29 +102,24 @@ async function getByItemID(req, res) {
 
 
 
-async function updateAdmin(req, res) {
-  const {
-    name,
-    newRole,
-    newStatus
-  } = req.body
+async function updateItem(req, res) {
+  let body = req.body
 
   try {
     // Use Prisma Client to update the admin's role and status in the database
-    const updatedAdmin = await prisma.item.update({
+    const updatedItem = await prisma.item.update({
       where: {
-        name: name // Use the admin ID to find the admin to update
+        name: body.name // Use the admin ID to find the admin to update
       },
       data: {
-        role: newRole, // Update the role
-        status: newStatus // Update the status
+        ...body
       }
     });
 
     // Return the updated admin object
     res.status(200).json({
       message: 'Update successful',
-      data: updatedAdmin
+      data: updatedItem
     })
   } catch (error) {
     // console.error('Error updating admin information:', error);
@@ -144,5 +139,5 @@ export default {
   getAll,
   getByRestaurantID,
   getByItemID,
-  updateAdmin
+  updateItem
 }

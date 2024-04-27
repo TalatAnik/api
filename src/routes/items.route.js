@@ -26,7 +26,7 @@ router
     )
     .patch(
         "/update",
-        item.updateAdmin,
+        item.updateItem,
         async (req, res) => {
             
         }
