@@ -55,7 +55,8 @@ async function getById(req, res, next) {
                     images: true,
                     price: true,
                     offerPrice: true,
-                    rating: true
+                    rating: true,
+                   
                 }
             }
         }

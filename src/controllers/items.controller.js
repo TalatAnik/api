@@ -7,7 +7,23 @@ const prisma = new PrismaClient()
 async function getAll(req, res, next) {
   let body = req.body
 
-  const allitems = await prisma.item.findMany({})
+  const allitems = await prisma.item.findMany({
+    include: {
+      owner: {
+        select: {
+          id: true,
+          name: true,
+          bannerImg: false,
+          description: true,
+          createdAt: false,
+          items: false,
+          password: false
+        }
+       
+      }
+    }
+    
+  })
   req.result = allitems
   next()
 }
@@ -15,8 +31,12 @@ async function getAll(req, res, next) {
 async function getByRestaurantID(req, res) {
   try {
     const items = await prisma.item.findMany({
+      include: {
+        owner: true
+      },
       where: {
-        restaurantId: req.params.id
+        restaurantId: req.params.id,
+        
       }
     })
     res.status(200).json({
